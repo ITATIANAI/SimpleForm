@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
+      <h:head>
+        <title>JSF Simple Form</title>
+    </h:head>
+    
+    <h:body>
+    <p:layout fullPage="true">
+    <p:layoutUnit position="north" header="Зона отображения общей информации">
+    <h:outputText value="Validation" />
+    </p:layoutUnit>
+    <p:layoutUnit position="west" size="400">
+    <h:outputText value="Groups" />
+    <h:form id="groupsForm">
+    <p:dataTable id="groupsTable" value="#{simpleFormBean.groupsList}"
+    var="group" selectionMode="single" rowKey="#{group.id}">
+    <p:ajax listener="#{simpleFormBean.getSelectedFunctionsList}" event="rowSelect"
+     update=":functionsForm:functionsTable :parametersForm:funcParamTable"/>
+    <p:column headerText="ID">
+    <h:outputText value="#{group.id}"/>
+    </p:column>
+    <p:column headerText="Name">
+    <h:outputText value="#{group.name}"/>
+    </p:column>
+    <p:column headerText="Description">
+    <h:outputText value="#{group.description}"/>
+    </p:column>
+    </p:dataTable>
+    </h:form>
+    </p:layoutUnit>
+    <p:layoutUnit position="center">
+    <p:layout>
+    <p:layoutUnit position="north" size="50%">
+    <h:outputText value="Functions" />
+    <h:form id="functionsForm">
+    <p:dataTable id="functionsTable" value="#{simpleFormBean.filteredFunctionsList}"
+    var="function" selectionMode="single" rowKey="#{function.id}">
+    <p:ajax listener="#{simpleFormBean.getSelectedFuncParamList}" event="rowSelect"
+     update=":parametersForm:funcParamTable"/>
+    <p:column headerText="ID">
+    <h:outputText value="#{function.id}"/>
+    </p:column>
+    <p:column headerText="Name">
+    <h:outputText value="#{function.name}"/>
+    </p:column>
+    <p:column headerText="Description">
+    <h:outputText value="#{function.description}"/>
+    </p:column>
+    </p:dataTable>
+    </h:form>
+    </p:layoutUnit>
+    <p:layoutUnit position="center">
+    <h:outputText value="Parameters" />
+    <h:form id="parametersForm">
+    <p:dataTable id="funcParamTable" value="#{simpleFormBean.filteredFuncParamList}"
+    var="parameter" selectionMode="single" rowKey="#{parameter.id}">
+    <p:column headerText="ID">
+    <h:outputText value="#{parameter.id}"/>
+    </p:column>
+    <p:column headerText="Name">
+    <h:outputText value="#{parameter.name}"/>
+    </p:column>
+    <p:column headerText="Description">
+    <h:outputText value="#{parameter.description}"/>
+    </p:column>
+    </p:dataTable>
+    </h:form>
+    </p:layoutUnit>
+    </p:layout>
+    </p:layoutUnit>
+    </p:layout>
+    </h:body>
+      </html>

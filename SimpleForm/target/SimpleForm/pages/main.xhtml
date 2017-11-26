@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
+      <h:head>
+        <title>JSF Simple Form</title>
+    </h:head>
+    
+    <h:body>
+    <p:layout fullPage="true">
+    <p:layoutUnit position="north" header="Зона отображения общей информации">
+    <h:outputText value="Layout content for North" />
+    </p:layoutUnit>
+    <p:layoutUnit position="west" size="400">
+    <h:outputText value="Layout content for West" />
+    <p:dataTable id="groupsTable">
+    </p:dataTable>
+    </p:layoutUnit>
+    <p:layoutUnit position="center">
+    <p:layout>
+    <p:layoutUnit position="north" size="50%">
+    <h:outputText value="Layout content for Top of Center" />
+    <p:dataTable id="functionsTable" value="#{simpleFormBean.groupsList}"
+    var="group" selectionMode="single">
+    <p:column headerText="ID">
+    <h:outputText value="#{group.id}"/>
+    </p:column>
+    <p:column headerText="Name">
+    <h:outputText value="#{group.name}"/>
+    </p:column>
+    <p:column headerText="Description">
+    <h:outputText value="#{group.description}"/>
+    </p:column>
+    </p:dataTable>
+    </p:layoutUnit>
+    <p:layoutUnit position="center">
+    <h:outputText value="Center of Center" />
+    <p:dataTable id="funcParamTable">
+    </p:dataTable>
+    </p:layoutUnit>
+    </p:layout>
+    </p:layoutUnit>
+    </p:layout>
+    </h:body>
+      </html>
